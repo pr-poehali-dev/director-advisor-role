@@ -3,17 +3,19 @@ import Icon from "@/components/ui/icon";
 
 const SLIDES = [
   { id: 0, type: "cover" },
-  { id: 1, type: "role" },
-  { id: 2, type: "tasks" },
-  { id: 3, type: "climate" },
-  { id: 4, type: "interaction" },
-  { id: 5, type: "keytasks" },
-  { id: 6, type: "cases" },
-  { id: 7, type: "results" },
+  { id: 1, type: "history" },
+  { id: 2, type: "role" },
+  { id: 3, type: "tasks" },
+  { id: 4, type: "climate" },
+  { id: 5, type: "interaction" },
+  { id: 6, type: "keytasks" },
+  { id: 7, type: "cases" },
+  { id: 8, type: "results" },
 ];
 
 const slideColors: Record<string, string> = {
   cover: "from-[#1A56DB] to-[#0D1B3E]",
+  history: "from-[#92400E] to-[#1A56DB]",
   role: "from-[#FF6B35] to-[#FF4D8D]",
   tasks: "from-[#2ECC71] to-[#1A56DB]",
   climate: "from-[#FFD23F] to-[#FF6B35]",
@@ -198,6 +200,91 @@ export default function Index() {
                 alt="Советник директора"
                 className="w-72 md:w-96 rounded-3xl shadow-2xl object-cover animate-slide-up opacity-0 delay-400 border-4 border-white/30"
               />
+            </div>
+          )}
+
+          {/* HISTORY */}
+          {slide.type === "history" && (
+            <div className="flex flex-col items-center flex-1 px-6 py-8 overflow-auto">
+              <SlideTitle icon="📜" title="История возникновения должности" />
+              <p className="text-white/70 text-sm text-center mb-5 animate-slide-up opacity-0 delay-200">
+                Советник директора по воспитанию и взаимодействию с детскими общественными объединениями
+              </p>
+
+              {/* Timeline */}
+              <div className="w-full max-w-3xl relative">
+                {/* центральная линия */}
+                <div className="absolute left-1/2 -translate-x-0.5 top-0 bottom-0 w-1 bg-white/20 rounded-full hidden md:block" />
+
+                {[
+                  {
+                    year: "2020",
+                    icon: "🌱",
+                    color: "#2ECC71",
+                    title: "Инициатива Президента",
+                    desc: "В рамках Года педагога Президент России выдвинул идею ввести должность советника по воспитанию — для усиления воспитательной работы в школах.",
+                    side: "left",
+                  },
+                  {
+                    year: "2021",
+                    icon: "📋",
+                    color: "#FFD23F",
+                    title: "Пилотный проект",
+                    desc: "Запуск пилота в 10 регионах России — более 10 000 школ получили первых советников. Основной фокус: детские объединения, патриотическое воспитание, работа с 1–11 классами.",
+                    side: "right",
+                  },
+                  {
+                    year: "2022",
+                    icon: "🏛️",
+                    color: "#FF6B35",
+                    title: "Официальное введение",
+                    desc: "Должность закреплена в профессиональном стандарте. Советники появились во всех регионах страны. Разработаны программы подготовки и повышения квалификации.",
+                    side: "left",
+                  },
+                  {
+                    year: "2023–2024",
+                    icon: "🚀",
+                    color: "#FF4D8D",
+                    title: "Масштабирование",
+                    desc: "Должность введена в 100% российских школ. Советники координируют работу с РДДМ «Движение Первых», Юнармией и другими детскими объединениями.",
+                    side: "right",
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`animate-slide-up opacity-0 delay-${(i + 1) * 100} flex md:items-center mb-4 gap-4
+                      ${item.side === "right" ? "md:flex-row-reverse" : "md:flex-row"} flex-row`}
+                  >
+                    {/* Карточка */}
+                    <div className="flex-1 bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-4 md:max-w-[44%]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-2xl">{item.icon}</span>
+                        <span className="font-black text-white text-base">{item.title}</span>
+                      </div>
+                      <p className="text-white/80 text-xs leading-relaxed">{item.desc}</p>
+                    </div>
+
+                    {/* Год — центр */}
+                    <div className="flex flex-col items-center gap-1 flex-shrink-0">
+                      <div
+                        className="w-14 h-14 rounded-full flex items-center justify-center font-black text-[#0D1B3E] text-xs text-center shadow-lg"
+                        style={{ backgroundColor: item.color }}
+                      >
+                        {item.year}
+                      </div>
+                    </div>
+
+                    {/* Пустая сторона на десктопе */}
+                    <div className="flex-1 hidden md:block md:max-w-[44%]" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="animate-pop opacity-0 delay-600 mt-4 bg-white/10 rounded-2xl px-6 py-3 text-center max-w-2xl">
+                <p className="text-white/90 text-sm">
+                  🏅 Сегодня советник директора — <span className="font-black text-[#FFD23F]">ключевая фигура</span> воспитательной системы каждой российской школы
+                </p>
+              </div>
             </div>
           )}
 
