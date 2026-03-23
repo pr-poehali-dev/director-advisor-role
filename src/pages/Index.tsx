@@ -7,8 +7,9 @@ const SLIDES = [
   { id: 2, type: "tasks" },
   { id: 3, type: "climate" },
   { id: 4, type: "interaction" },
-  { id: 5, type: "cases" },
-  { id: 6, type: "results" },
+  { id: 5, type: "keytasks" },
+  { id: 6, type: "cases" },
+  { id: 7, type: "results" },
 ];
 
 const slideColors: Record<string, string> = {
@@ -17,6 +18,7 @@ const slideColors: Record<string, string> = {
   tasks: "from-[#2ECC71] to-[#1A56DB]",
   climate: "from-[#FFD23F] to-[#FF6B35]",
   interaction: "from-[#7B2FBE] to-[#1A56DB]",
+  keytasks: "from-[#0D9488] to-[#0D1B3E]",
   cases: "from-[#FF4D8D] to-[#7B2FBE]",
   results: "from-[#1A56DB] to-[#2ECC71]",
 };
@@ -336,6 +338,68 @@ export default function Index() {
               </div>
               <div className="animate-pop opacity-0 delay-500 mt-6 bg-white/10 rounded-2xl px-8 py-4 text-center">
                 <p className="font-caveat text-[#FFD23F] text-2xl">«Единая команда — счастливые дети!» ✨</p>
+              </div>
+            </div>
+          )}
+
+          {/* KEYTASKS */}
+          {slide.type === "keytasks" && (
+            <div className="flex flex-col items-center flex-1 px-6 py-10">
+              <SlideTitle icon="📌" title="Работа по ключевым заданиям с классными руководителями" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mt-4">
+                {[
+                  {
+                    icon: "📅",
+                    color: "#FFD23F",
+                    title: "Планирование воспитательных мероприятий",
+                    steps: ["Совместное составление плана на четверть", "Распределение ролей и ответственности", "Подготовка сценариев и материалов"],
+                  },
+                  {
+                    icon: "🔬",
+                    color: "#2ECC71",
+                    title: "Мониторинг психологического климата",
+                    steps: ["Регулярные наблюдения и опросы детей", "Анализ результатов и обсуждение с классным руководителем", "Корректировка плана работы при необходимости"],
+                  },
+                  {
+                    icon: "🧩",
+                    color: "#FF6B35",
+                    title: "Работа с «трудными» детьми",
+                    steps: ["Совместное определение стратегии помощи ребёнку", "Включение ребёнка в групповые активности", "Отслеживание динамики и поддержка семьи"],
+                  },
+                  {
+                    icon: "💬",
+                    color: "#FF4D8D",
+                    title: "Индивидуальные беседы",
+                    steps: ["Проведение бесед с детьми по запросу классного руководителя", "Обмен наблюдениями после каждой беседы", "Совместные рекомендации для родителей"],
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`animate-slide-up opacity-0 delay-${(i + 1) * 100} bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-5`}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                        style={{ backgroundColor: item.color + "33" }}>
+                        {item.icon}
+                      </div>
+                      <h3 className="text-white font-black text-sm leading-tight">{item.title}</h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {item.steps.map((step, j) => (
+                        <li key={j} className="flex gap-2 items-start text-white/80 text-xs">
+                          <span className="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] font-black text-[#0D1B3E]"
+                            style={{ backgroundColor: item.color }}>
+                            {j + 1}
+                          </span>
+                          {step}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="animate-pop opacity-0 delay-600 mt-5 bg-white/10 rounded-2xl px-6 py-3 text-center">
+                <p className="font-caveat text-[#5EEAD4] text-2xl">«Сильный классный руководитель + советник = мощная команда!» 🤜🤛</p>
               </div>
             </div>
           )}
