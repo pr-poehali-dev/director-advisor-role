@@ -346,35 +346,70 @@ export default function Index() {
 
           {/* CLIMATE */}
           {slide.type === "climate" && (
-            <div className="flex flex-col items-center flex-1 px-6 py-10">
-              <SlideTitle icon="🌈" title="Формирование школьного климата" light={false} />
-              <div className="w-full max-w-3xl mt-4 space-y-4">
-                {[
-                  { label: "Доверие и безопасность", value: 92, color: "#1A56DB", icon: "🛡️" },
-                  { label: "Дружба и уважение", value: 88, color: "#FF4D8D", icon: "❤️" },
-                  { label: "Участие в жизни класса", value: 78, color: "#2ECC71", icon: "🌱" },
-                  { label: "Радость от учёбы", value: 85, color: "#7B2FBE", icon: "😊" },
-                ].map((item, i) => (
-                  <div key={i} className={`animate-slide-left opacity-0 delay-${(i + 1) * 100}`}>
-                    <div className="flex justify-between mb-2">
-                      <span className="font-black text-[#0D1B3E] flex gap-2 items-center text-base">
-                        {item.icon} {item.label}
-                      </span>
-                      <span className="font-black text-[#0D1B3E] text-lg">{item.value}%</span>
-                    </div>
-                    <div className="h-5 bg-white/40 rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full progress-bar"
-                        style={{ "--target-width": `${item.value}%`, backgroundColor: item.color } as React.CSSProperties}
-                      />
-                    </div>
-                  </div>
-                ))}
+            <div className="flex flex-col items-center flex-1 px-6 py-8 overflow-auto">
+              <SlideTitle icon="🌈" title="Школьный климат" light={false} />
+
+              {/* Определение */}
+              <div className="animate-slide-up opacity-0 delay-100 w-full max-w-3xl bg-[#0D1B3E]/80 rounded-2xl px-6 py-4 mb-5 text-center">
+                <p className="text-white/90 text-sm leading-relaxed">
+                  <span className="font-black text-[#FFD23F]">Школьный климат</span> — это качество и характер школьной жизни: как люди чувствуют себя в школе, каковы их общие нормы, ценности и цели, а также отношения между учениками и учителями.
+                </p>
               </div>
-              <div className="mt-8 grid grid-cols-3 gap-3 w-full max-w-3xl">
-                {["🎭 Классные часы", "🎨 Творческие мастерские", "🏃 Спортивные активности"].map((item, i) => (
-                  <div key={i} className={`animate-pop opacity-0 delay-${(i + 3) * 100} bg-[#0D1B3E] rounded-2xl p-3 text-center`}>
-                    <p className="text-white font-semibold text-sm">{item}</p>
+
+              {/* Два блока: позитивный + влияние */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mb-5">
+                <div className="animate-slide-left opacity-0 delay-200 bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">✅</span>
+                    <h3 className="text-white font-black text-sm">Позитивный климат создаёт:</h3>
+                  </div>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Физическую безопасность каждого ребёнка",
+                      "Эмоциональную и социальную защищённость",
+                      "Чёткие нормы, ценности и ожидания",
+                      "Условия для обучения и развития личности",
+                    ].map((t, i) => (
+                      <li key={i} className="text-white/80 text-xs flex gap-2 items-start">
+                        <span className="text-[#2ECC71] mt-0.5">✦</span>{t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="animate-slide-right opacity-0 delay-300 bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">⚡</span>
+                    <h3 className="text-white font-black text-sm">Благоприятный климат влияет на:</h3>
+                  </div>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Мотивацию и вовлечённость в учёбу",
+                      "Эмоциональное и социальное благополучие",
+                      "Академические результаты детей",
+                      "Устойчивость к внешним вызовам",
+                    ].map((t, i) => (
+                      <li key={i} className="text-white/80 text-xs flex gap-2 items-start">
+                        <span className="text-[#FFD23F] mt-0.5">✦</span>{t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* 4 составляющих */}
+              <h3 className="text-white font-black text-base mb-3 animate-slide-up opacity-0 delay-400">Четыре составляющих школьного климата:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-3xl">
+                {[
+                  { icon: "🛡️", color: "#1A56DB", title: "Безопасность", desc: "Нормы и правила, физическая, социальная и эмоциональная безопасность" },
+                  { icon: "📖", color: "#2ECC71", title: "Учение", desc: "Среда, в которой учиться интересно, возможность получить поддержку" },
+                  { icon: "❤️", color: "#FF4D8D", title: "Отношения", desc: "Уважение к различиям, поддержка учитель–ученик и ученик–ученик" },
+                  { icon: "🏫", color: "#FF6B35", title: "Среда", desc: "Физическое окружение, принадлежность к школе, вовлечённость" },
+                ].map((item, i) => (
+                  <div key={i} className={`animate-pop opacity-0 delay-${(i + 4) * 100} rounded-2xl p-3 text-center`}
+                    style={{ backgroundColor: item.color + "33", border: `1.5px solid ${item.color}55` }}>
+                    <div className="text-3xl mb-1">{item.icon}</div>
+                    <h4 className="text-white font-black text-sm">{item.title}</h4>
+                    <p className="text-white/70 text-xs mt-1">{item.desc}</p>
                   </div>
                 ))}
               </div>
